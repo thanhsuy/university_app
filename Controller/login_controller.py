@@ -40,9 +40,9 @@ class LoginController:
             # Xóa view hiện tại
             for widget in self.root.winfo_children():
                 widget.destroy()
-
-            if dbUniversity.get_universities_by_user(idUser):
-                set_university(dbUniversity.get_universities_by_user(idUser))
+            idAdmin = db.get_idAdmin(idUser)
+            if dbUniversity.get_universities_by_user(idAdmin):
+                set_university(dbUniversity.get_universities_by_user(idAdmin))
                 home_view = HomeAdminView(self.root, None)  # Ban đầu không truyền Controller
                 home_controller = HomeAdminController(self.root, home_view)
                 home_view.controller = home_controller

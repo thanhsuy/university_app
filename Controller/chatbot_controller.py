@@ -1,48 +1,64 @@
-from View.chatbot_view import ChatBotView
 from View.compare_view import CompareView
 from View.home_view import HomeView
+from View.homestudent_view import HomeStudentView
 from View.login_view import LoginView
 from DataAccess.university_model import UniversityModel
 from View.registration_view import RegistrationView
-from View.university_detail_view import UniversityDetailView
+from openai import OpenAI
 
 
-class HomeController:
+class ChatbotController:
     def __init__(self, root, view):
         self.root = root
         self.model = UniversityModel()
         self.view = view
-        self.data = self.get_data()
+
+        describe = "You are university helper chat bot"
+        system = {"role": "system", "content": describe}
+
+        self.message = [system]
+        self.client = OpenAI(
+            base_url="https://generativelanguage.googleapis.com/v1beta/",
+            api_key="Google_Key"
+        )
 
     def get_data(self):
         # Lấy dữ liệu từ model
         return self.model.get_all_universities()
 
-    def update_view(self):
-        # Cập nhật dữ liệu cho View
-        self.view.display_page(self.data)
-
-    def update_search_view(self, name):
-        # Cập nhật dữ liệu cho View
-        self.data = self.model.get_all_universities_by_name(name)
-
-    def on_item_click(self, item_id):
-        from Tmp.university import set_university
-        from Controller.universitydetail_controller import UniversityDetailController
-        # Xử lý sự kiện khi nhấn vào item
-        print(f"Clicked on ID: {item_id}")
-        set_university(self.model.get_university_by_id(item_id))
+    def home(self):
+        from Controller.home_controller import HomeController
+        from Controller.homestudent_controller import HomeStudentController
+        from Tmp.user import userId
         # Xóa view hiện tại
         for widget in self.root.winfo_children():
             widget.destroy()
-        regis_view = UniversityDetailView(self.root, None)  # Ban đầu không truyền Controller
-        regis_controller = UniversityDetailController(self.root, regis_view)
+        if userId == -1:
+            regis_view = HomeView(self.root, None)  # Ban đầu không truyền Controller
+            regis_controller = HomeController(self.root, regis_view)
+        else:
+            regis_view = HomeStudentView(self.root, None)
+            regis_controller = HomeStudentController(self.root, regis_view)
         regis_view.controller = regis_controller
         self.view = regis_view
         self.display_view()
 
     def display_view(self):
         self.view.show()
+
+    def logout(self):
+        from Controller.home_controller import HomeController
+        from Tmp.user import set_userId
+        set_userId(-1)
+
+        # Xóa view hiện tại
+        for widget in self.root.winfo_children():
+            widget.destroy()
+        regis_view = HomeView(self.root, None)  # Ban đầu không truyền Controller
+        regis_controller = HomeController(self.root, regis_view)
+        regis_view.controller = regis_controller
+        self.view = regis_view
+        self.display_view()
 
     def login(self):
         from Controller.login_controller import LoginController
@@ -78,14 +94,18 @@ class HomeController:
         self.view = regis_view
         self.display_view()
 
-    def chatbot(self):
-        from Controller.chatbot_controller import ChatbotController
-        # Xóa view hiện tại
+    def return_message(self, question):
 
-        for widget in self.root.winfo_children():
-            widget.destroy()
-        regis_view = ChatBotView(self.root, None)  # Ban đầu không truyền Controller
-        regis_controller = ChatbotController(self.root, regis_view)
-        regis_view.controller = regis_controller
-        self.view = regis_view
-        self.display_view()
+        user_input = question
+        self.message.append({"role": "user", "content": user_input})
+        response = self.client.chat.completions.create(
+            model="gemini-1.5-flash-latest",
+            messages=self.message
+        )
+        bot_reply = str(response.choices[0].message.content)
+        # for chunk in response:
+        #     bot_reply += chunk.choices[0].delta.content or ""
+        #     print(chunk.choices[0].delta.content or "", end="", flush=True)
+
+        self.message.append({"role": "assistant", "content": bot_reply})
+        return bot_reply

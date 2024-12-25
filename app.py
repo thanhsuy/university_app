@@ -21,6 +21,7 @@ if __name__ == "__main__":
     root = ctk.CTk()
     root.geometry("720x512")
     root.title("Quản lý trường đại học")
+    root.resizable(False, False)
 
     # Khởi tạo View và Controller
     home_view = HomeView(root, None)  # Ban đầu không truyền Controller

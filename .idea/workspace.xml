@@ -4,44 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e396aff-6981-42b9-9c02-8edac6fe9033" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/BTL.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/addschool_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/compare_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/editschool_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/home_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/homeadmin_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/homeappadmin_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/homestudent_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/login_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/main_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/newhomeadmin_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controller/registration_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataAccess/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataAccess/university_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataAccess/user_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tmp/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tmp/university.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tmp/user.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/addschool_view.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/compare_view.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/editschool_view.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/home_view.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/homeadmin_view.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/homeappadmin_view.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/homestudent_view.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/login_view.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/newhomeadmin_view.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/View/registration_view.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+    <list default="true" id="5e396aff-6981-42b9-9c02-8edac6fe9033" name="Changes" comment="Sua">
+      <change afterPath="$PROJECT_DIR$/Controller/chatbot_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controller/evaluate_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controller/universitydetail_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/View/chatbot_view.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/View/evaluate_view.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/View/university_detail_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/addschool_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/addschool_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/compare_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/compare_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/editschool_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/editschool_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/home_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/home_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/homeappadmin_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/homeappadmin_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/homestudent_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/homestudent_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/login_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/login_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/registration_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/registration_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataAccess/university_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataAccess/university_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/addschool_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/addschool_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/compare_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/compare_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/editschool_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/editschool_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/home_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/home_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/homeadmin_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/homeadmin_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/homeappadmin_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/homeappadmin_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/homestudent_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/homestudent_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/newhomeadmin_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/View/newhomeadmin_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,17 +55,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.app.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/python/BTL-PythonNC/Project/BTL/Controller"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/python/BTL-PythonNC/Project/BTL/Controller&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\python\BTL-PythonNC\Project\BTL\Controller" />
@@ -124,7 +112,20 @@
       <option name="presentableId" value="Default" />
       <updated>1733061781521</updated>
     </task>
+    <task id="LOCAL-00001" summary="Sua">
+      <option name="closed" value="true" />
+      <created>1733843982751</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1733843982751</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Sua" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sua" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -16,14 +16,6 @@ class RegistrationController:
         self.dbUser = UserModel()
 
     def register_user(self, username, password, email, account_type, location, sat, toefl):
-        # Xử lý logic đăng ký tại đây
-        print(f"Tên đăng nhập: {username}")
-        print(f"Mật khẩu: {password}")
-        print(f"Email: {email}")
-        print(f"Loại tài khoản: {account_type}")
-        print(f"Nơi ở: {location}")
-        print(f"SAT: {sat}")
-        print(f"TOEFL: {toefl}")
         try:
             self.dbUser.add_user(username, password, email)
             idUser = self.dbUser.get_last_user()

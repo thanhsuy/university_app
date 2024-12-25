@@ -1,4 +1,3 @@
-from PIL import Image
 import customtkinter as ctk
 from tkinter import messagebox
 
@@ -16,16 +15,10 @@ class AddSchoolView:
         self.navbar = ctk.CTkFrame(root, height=50, corner_radius=0, fg_color="#444")
         self.navbar.pack(fill="x")
 
-        buttons = ["Quản lý trường", "So sánh", "Chat bot"]
+        buttons = ["Quản lý trường"]
 
         self.butXepHang = ctk.CTkButton(self.navbar, text=buttons[0], width=100, fg_color="orange")
         self.butXepHang.pack(side="left", padx=10)
-
-        self.butSoSanh = ctk.CTkButton(self.navbar, text=buttons[1], width=100, fg_color="#555", hover_color="#666")
-        self.butSoSanh.pack(side="left", padx=10)
-
-        self.butChatBot = ctk.CTkButton(self.navbar, text=buttons[2], width=100, fg_color="#555", hover_color="#666")
-        self.butChatBot.pack(side="left", padx=10)
 
         self.butLogout = ctk.CTkButton(self.navbar, text="Đăng xuất", width=80, fg_color="orange", command=self.logout)
         self.butLogout.pack(side="right", padx=5)
@@ -159,3 +152,6 @@ class AddSchoolView:
         for widget in self.root.winfo_children():
             widget.destroy()
         self.controller.logout()
+
+    def home(self):
+        self.controller.home()

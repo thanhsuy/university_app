@@ -5,8 +5,8 @@ class UniversityModel:
     def __init__(self):
         # Kết nối đến cơ sở dữ liệu MySQL
         self.conn = mysql.connector.connect(
-            host="localhost",          # Thay bằng địa chỉ server MySQL
-            user="root",      # Thay bằng username của bạn
+            host="localhost",  # Thay bằng địa chỉ server MySQL
+            user="root",  # Thay bằng username của bạn
             password="13092003aA@",  # Thay bằng mật khẩu của bạn
             database="universitymanagement"  # Tên cơ sở dữ liệu
         )
@@ -31,13 +31,53 @@ class UniversityModel:
         self.cursor.execute(query)
         return self.cursor.fetchall()
 
-    def get_universities_by_user(self, idUser):
+    def get_all_universities_by_name(self, name):
         # Lấy tất cả các trường
-        query = "SELECT * FROM university WHERE idAdmin = %s"
-        self.cursor.execute(query, (idUser, ))
+        query = "SELECT * FROM university WHERE nameUniversity LIKE %s"
+        search_name = f"%{name}%"
+        self.cursor.execute(query, (search_name,))
+        return self.cursor.fetchall()
+
+    def get_university_id(self, idAdmin):
+        # Lấy tất cả các trường
+        query = "SELECT idUniversity FROM university WHERE idAdmin = %s"
+        self.cursor.execute(query, (idAdmin,))
+        result = self.cursor.fetchone()
+        self.cursor.fetchall()
+        return result[0]
+
+    def get_university_by_id(self, idUni):
+        # Lấy tất cả các trường
+        query = "SELECT * FROM university WHERE idUniversity = %s"
+        self.cursor.execute(query, (idUni,))
         result = self.cursor.fetchone()
         self.cursor.fetchall()
         return result
+
+    def get_universities_by_user(self, idUser):
+        # Lấy tất cả các trường
+        query = "SELECT * FROM university WHERE idAdmin = %s"
+        self.cursor.execute(query, (idUser,))
+        result = self.cursor.fetchone()
+        self.cursor.fetchall()
+        return result
+
+    def get_university_by_name(self, name):
+        # Lấy tất cả các trường
+        query = "SELECT * FROM university WHERE nameUniversity = %s"
+        self.cursor.execute(query, (name,))
+        result = self.cursor.fetchone()
+        self.cursor.fetchall()
+        return result
+
+    def get_name_universities(self):
+        # Lấy tất cả các trường
+        query = "SELECT nameUniversity FROM university"
+        self.cursor.execute(query)
+        all_name = []
+        for i in self.cursor.fetchall():
+            all_name.append(i[0])
+        return all_name
 
     def add_university(self, name, location, region, focus, country_fee, global_fee, SAT, TOEFL, description, idUser):
         # Thêm một trường mới
@@ -50,6 +90,29 @@ class UniversityModel:
                  "%s);")
         self.cursor.execute(query, (name, location, region, "M", focus, "MD", "A", 0, 0, 0, 0, 0, 0, 0, 0, 0,
                                     country_fee, global_fee, SAT, TOEFL, description, idUser))
+        self.conn.commit()
+
+    def edit_university(self, name, location, region, focus, country_fee, global_fee, SAT, TOEFL, description, idUser):
+        # Thêm một trường mới
+        query = ("UPDATE `universitymanagement`.`university` SET `nameUniversity` = %s, `location` = %s, `region` = "
+                 "%s, `size` = %s, `focus` = %s, `res` = %s, `status` = %s, `domesticStudentsFee` = %s, "
+                 "`internationalStudentsFee` = %s, `SAT` = %s, `TOEFL` = %s, `description` = %s WHERE ("
+                 "`idAdmin` = %s);")
+        self.cursor.execute(query, (name, location, region, "M", focus, "MD", "A",
+                                    country_fee, global_fee, SAT, TOEFL, description, idUser))
+        self.conn.commit()
+
+    def evaluate_university(self, acaRe, empRe, facSt, citPe, intFa, intSt, intRe, empOu, sus, idUni):
+        query = ("UPDATE `universitymanagement`.`university` SET `academicReputation` = %s, `employerReputation` = "
+                 "%s, `facultyStudent` = %s, `citationsPerFaculty` = %s, `internationalFaculty` = %s, "
+                 "`internationalStudents` = %s, `internationalResearchNetwork` = %s, `employeeOutcomes` = %s, "
+                 "`sustainability` = %s WHERE (`idUniversity` = %s);")
+        self.cursor.execute(query, (acaRe, empRe, facSt, citPe, intFa, intSt, intRe, empOu, sus, idUni))
+        self.conn.commit()
+
+    def del_university_by_id(self, idUni):
+        query = "DELETE FROM `universitymanagement`.`university` WHERE (`idUniversity` = %s);"
+        self.cursor.execute(query, (idUni,))
         self.conn.commit()
 
 

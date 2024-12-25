@@ -1,3 +1,5 @@
+from tkinter import messagebox
+
 from PIL import Image
 import customtkinter as ctk
 
@@ -17,16 +19,10 @@ class EditSchoolView:
         self.navbar = ctk.CTkFrame(root, height=50, corner_radius=0, fg_color="#444")
         self.navbar.pack(fill="x")
 
-        buttons = ["Quản lý trường", "So sánh", "Chat bot"]
+        buttons = ["Quản lý trường"]
 
-        self.butXepHang = ctk.CTkButton(self.navbar, text=buttons[0], width=100, fg_color="orange")
+        self.butXepHang = ctk.CTkButton(self.navbar, text=buttons[0], width=100, fg_color="orange", command=self.home)
         self.butXepHang.pack(side="left", padx=10)
-
-        self.butSoSanh = ctk.CTkButton(self.navbar, text=buttons[1], width=100, fg_color="#555", hover_color="#666")
-        self.butSoSanh.pack(side="left", padx=10)
-
-        self.butChatBot = ctk.CTkButton(self.navbar, text=buttons[2], width=100, fg_color="#555", hover_color="#666")
-        self.butChatBot.pack(side="left", padx=10)
 
         self.butLogout = ctk.CTkButton(self.navbar, text="Đăng xuất", width=80, fg_color="orange", command=self.logout)
         self.butLogout.pack(side="right", padx=5)
@@ -59,7 +55,7 @@ class EditSchoolView:
         ctk.CTkLabel(self.content_frame, text="Quốc gia", anchor="w", font=("Arial", 14, "bold")).grid(row=2, column=0,
                                                                                                        sticky="w",
                                                                                                        padx=10,
-                                                                                                      pady=5)
+                                                                                                       pady=5)
         self.country_school_entry = ctk.CTkEntry(self.content_frame)
         self.country_school_entry.insert(ctk.END, university[2])
         self.country_school_entry.grid(row=2, column=1, columnspan=1, pady=5, padx=10, sticky="w")
@@ -121,10 +117,10 @@ class EditSchoolView:
                                                                                                    padx=10,
                                                                                                    pady=5)
         ctk.CTkLabel(self.content_frame, text="chuyên ngành:", font=("Arial", 14, "bold")).grid(row=9,
-                                                                                               column=0,
-                                                                                               sticky="w",
-                                                                                               padx=10,
-                                                                                               pady=0)
+                                                                                                column=0,
+                                                                                                sticky="w",
+                                                                                                padx=10,
+                                                                                                pady=0)
         self.focus_entry = ctk.CTkEntry(self.content_frame)
         if university[5] == "CO":
             self.focus_entry.insert(ctk.END, "Comprehensive")
@@ -145,9 +141,41 @@ class EditSchoolView:
         pass
 
     def edit_info(self):
-        print("Chỉnh sửa thông tin trường học!")
+        from Tmp.user import userId
+
+        name = self.name_school_entry.get()
+        location = self.country_school_entry.get()
+        region = self.location_school_entry.get()
+        focus = self.focus_entry.get()
+        if focus == "Comprehensive":
+            focus = "CO"
+        elif focus == "Full Comprehensive":
+            focus = "FC"
+        elif focus == "Focused":
+            focus = "FO"
+        elif focus == "Specialist":
+            focus = "SP"
+        else:
+            focus = ""
+
+        country_fee = self.country_fee.get()
+        global_fee = self.global_fee.get()
+        SAT = self.SAT.get()
+        TOEFL = self.TOEFL.get()
+        description = self.description_entry.get()
+        image = self.image_entry.get()
+        idUser = userId
+
+        if not (country_fee.isnumeric() and global_fee.isnumeric() and SAT.isnumeric() and TOEFL.isnumeric()):
+            messagebox.showerror("Lỗi", "Các trường nhập số sai định dạng!")
+
+        self.controller.edit_university(name, location, region, focus,
+                                        country_fee, global_fee, SAT, TOEFL, description, idUser, image)
 
     def logout(self):
         for widget in self.root.winfo_children():
             widget.destroy()
         self.controller.logout()
+
+    def home(self):
+        self.controller.home()

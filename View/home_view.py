@@ -20,10 +20,12 @@ class HomeView:
         self.butXepHang = ctk.CTkButton(self.navbar, text=buttons[0], width=100, fg_color="orange", hover_color="#666")
         self.butXepHang.pack(side="left", padx=10)
 
-        self.butSoSanh = ctk.CTkButton(self.navbar, text=buttons[1], width=100, fg_color="#555", hover_color="#666")
+        self.butSoSanh = ctk.CTkButton(self.navbar, text=buttons[1], width=100,
+                                       fg_color="#555", hover_color="#666", command=self.compare)
         self.butSoSanh.pack(side="left", padx=10)
 
-        self.butChatBot = ctk.CTkButton(self.navbar, text=buttons[2], width=100, fg_color="#555", hover_color="#666")
+        self.butChatBot = ctk.CTkButton(self.navbar, text=buttons[2], width=100,
+                                        fg_color="#555", hover_color="#666", command=self.chatbot)
         self.butChatBot.pack(side="left", padx=10)
 
         self.butLogin = ctk.CTkButton(self.navbar, text="Đăng nhập", width=80, fg_color="orange", command=self.login)
@@ -41,6 +43,7 @@ class HomeView:
 
         self.search_entry = ctk.CTkEntry(self.search_frame)
         self.search_entry.pack(side="left", fill="x", expand=True, padx=10)
+        self.search_entry.bind("<Return>", self.search)
 
         # Khu vực nội dung
         self.content_frame = ctk.CTkFrame(root, height=412, bg_color="black")
@@ -89,7 +92,7 @@ class HomeView:
             self.controller.update_view()
 
     def next_page(self):
-        if (self.current_page + 1) * self.frames_per_page < len(self.controller.get_data()):
+        if (self.current_page + 1) * self.frames_per_page < len(self.controller.data):
             self.current_page += 1
             self.controller.update_view()
 
@@ -107,3 +110,15 @@ class HomeView:
         for widget in self.root.winfo_children():
             widget.destroy()
         self.controller.regis()
+
+    def search(self, event):
+        self.current_page = 0
+        name = self.search_entry.get()
+        self.controller.update_search_view(name)
+        self.controller.update_view()
+
+    def compare(self):
+        self.controller.compare_uni()
+
+    def chatbot(self):
+        self.controller.chatbot()

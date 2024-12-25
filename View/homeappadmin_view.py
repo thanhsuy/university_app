@@ -19,16 +19,10 @@ class HomeAppAdminView:
         self.navbar = ctk.CTkFrame(root, height=50, corner_radius=0, fg_color="#444")
         self.navbar.pack(fill="x")
 
-        buttons = ["Xếp hạng", "So sánh", "Chat bot"]
+        buttons = ["Quản lý các trường học"]
 
-        self.butXepHang = ctk.CTkButton(self.navbar, text=buttons[0], width=100, fg_color="#555", hover_color="#666")
+        self.butXepHang = ctk.CTkButton(self.navbar, text=buttons[0], width=100, fg_color="orange", hover_color="#666")
         self.butXepHang.pack(side="left", padx=10)
-
-        self.butSoSanh = ctk.CTkButton(self.navbar, text=buttons[1], width=100, fg_color="#555", hover_color="#666")
-        self.butSoSanh.pack(side="left", padx=10)
-
-        self.butChatBot = ctk.CTkButton(self.navbar, text=buttons[2], width=100, fg_color="#555", hover_color="#666")
-        self.butChatBot.pack(side="left", padx=10)
 
         self.butLogout = ctk.CTkButton(self.navbar, text="Đăng xuất", width=80, fg_color="orange", command=self.logout)
         self.butLogout.pack(side="right", padx=5)
@@ -47,6 +41,7 @@ class HomeAppAdminView:
 
         self.search_entry = ctk.CTkEntry(self.search_frame)
         self.search_entry.pack(side="left", fill="x", expand=True, padx=10)
+        self.search_entry.bind("<Return>", self.search)
 
         # Khu vực nội dung
         self.content_frame = ctk.CTkFrame(root, height=412, bg_color="black")
@@ -98,7 +93,7 @@ class HomeAppAdminView:
 
             # Sửa lỗi lambda
             butDanhgia.bind("<Button-1>", lambda e, itemid=item_id: self.controller.on_item_click(itemid))
-            butXoa.bind("<Button-1>", lambda e, itemid=item_id: self.controller.on_item_click(itemid))
+            butXoa.bind("<Button-1>", lambda e, itemid=item_id: self.controller.del_item_click(itemid))
 
         # Cập nhật trạng thái nút phân trang
         self.prev_button.configure(state="normal" if self.current_page > 0 else "disabled")
@@ -110,7 +105,7 @@ class HomeAppAdminView:
             self.controller.update_view()
 
     def next_page(self):
-        if (self.current_page + 1) * self.frames_per_page < len(self.controller.get_data()):
+        if (self.current_page + 1) * self.frames_per_page < len(self.controller.data):
             self.current_page += 1
             self.controller.update_view()
 
@@ -118,6 +113,12 @@ class HomeAppAdminView:
         self.controller.update_view()
         # Hiển thị thông báo nếu cần (có thể mở rộng)
         pass
+
+    def search(self, event):
+        self.current_page = 0
+        name = self.search_entry.get()
+        self.controller.update_search_view(name)
+        self.controller.update_view()
 
     def logout(self):
         for widget in self.root.winfo_children():
